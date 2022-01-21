@@ -14,8 +14,34 @@
 <body>
     <div class="container">
         <h1>Wacky Widgets</h1>
-        <h3> No Widgets Exist</h3>
-        <hr>
+        
+       
+        {% for widget in widgets %}
+        <table class="table table-striped">
+            <tr>
+                <th>Description</th>
+                <th>Quantity</th>
+            </tr>
+            <tr>
+                <td>
+                    {{ widget.description }}
+                </td>
+                <td>
+                    {{ widget.quantity }}
+                </td>
+            </tr>
+        </table>
+        {% empty %}
+            <h3> No Widgets Exist</h3>
+            <hr>
+        {% endfor %}
+        <form action="{% url 'widgets_create' %}" method="post">
+            <table class="table table-striped">
+                {% csrf_token %}
+                {{ widget_form.as_table }}
+            </table>
+            <input type="submit" class="btn btn-success" value="Add Widget"> 
+        </form>
     </div>
 </body>
 </html>
