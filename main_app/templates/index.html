@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <title>Wacky Widgets</title>
 </head>
 <body>
@@ -21,6 +22,7 @@
             <tr>
                 <th>Description</th>
                 <th>Quantity</th>
+                <th></th>
             </tr>
             <tr>
                 <td>
@@ -29,7 +31,11 @@
                 <td>
                     {{ widget.quantity }}
                 </td>
+                <td>
+                    <a href="{% url 'widgets_delete'  widget.id %}" method="post" class="btn btn-danger bi-x"></a>
+                </td>
             </tr>
+           
         </table>
         {% empty %}
             <h3> No Widgets Exist</h3>

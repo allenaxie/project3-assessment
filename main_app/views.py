@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.shortcuts import render, redirect
+from django.views.generic.edit import CreateView, DeleteView
 from .forms import WidgetForm
-from main_app.models import Widget
+from .models import Widget
 
 # Create your views here.
 def home(request):
@@ -18,4 +18,7 @@ class WidgetCreate(CreateView):
 
     success_url = '/'
 
-     
+class WidgetDelete(DeleteView):
+    model = Widget
+    success_url = '/'
+
