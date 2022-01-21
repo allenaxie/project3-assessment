@@ -16,14 +16,15 @@
     <div class="container">
         <h1>Wacky Widgets</h1>
         
-       
-        {% for widget in widgets %}
+       {% if widgets %}
         <table class="table table-striped">
+        
             <tr>
                 <th>Description</th>
                 <th>Quantity</th>
                 <th></th>
             </tr>
+            {% for widget in widgets %}
             <tr>
                 <td>
                     {{ widget.description }}
@@ -36,11 +37,15 @@
                 </td>
             </tr>
            
-        </table>
-        {% empty %}
+            {% endfor %}
+        {% else %}
             <h3> No Widgets Exist</h3>
             <hr>
-        {% endfor %}
+        
+        </table>
+        {% endif %}
+        <br><br>
+        
         <form action="{% url 'widgets_create' %}" method="post">
             <table class="table table-striped">
                 {% csrf_token %}
